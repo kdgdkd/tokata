@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tocata Joaquín M.</title>
+    <link rel="icon" href="icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* Existing styles */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            touch-action: manipulation;
+            font-family: 'Orbitron', sans-serif;
+            
+            /* New background image styles */
+            background-image: url('mantel.png'); /* Path to your image */
+            background-size: cover;                  /* Cover entire viewport */
+            background-position: center;             /* Center the image */
+            background-repeat: no-repeat;            /* Prevent repeating */
+            background-attachment: fixed;            /* Fixed position (optional) */
+            
+            /* Fallback background color */
+            background-color: #838383; /* Shown while image loads or if image fails */
+        }
+        .izquierda {
+            margin-right: 25px;     
+            width: 300px;
+        }
+        .title {
+            text-align: center;
+            color: #555555;
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+            font-family: "Bonheur Royale", serif;
+            font-weight: bold;
+            /* text-transform: uppercase; */
+            letter-spacing: 1px;
+            position: relative;
+            padding: 2rem;
+            background: #271a06;
+            border: 4px solid #2a1e10;
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 0 15px rgba(0,0,0,0.3),
+                0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .title::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 9px,
+                    #3a3a3a 9px,
+                    #3a3a3a 10px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 9px,
+                    #3a3a3a 9px,
+                    #3a3a3a 10px
+                );
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                -45deg,
+                transparent 40%,
+                rgba(255,255,255,0.1) 50%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+
+        .title span {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            padding: 0 1rem;
+            background: 
+                linear-gradient(
+                    to bottom,
+                    #3a3a3a 25%,
+                    #272727 30%,
+                    #272727 70%,
+                    #3a3a3a 75%
+                );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+        }
+
+
+        .track-selector {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem auto;
+            padding: 0.5rem;
+            background: #2a2a2a;
+            color: rgb(184, 184, 184);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-family: "Zen Dots", serif;
+        }
+
+        .turntable {
+        background: #402e1b; /* Base wood color */
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 
+            0 40px 40px rgba(0, 0, 0, 0.579),
+            0 0 0 6px #2a1e10,  /* Darker border */
+            inset 0 -15px 20px rgba(0,0,0,0.5); /* Depth shadow */
+        position: relative;
+        max-width: 600px;
+        width:90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* Wood grain texture */
+        background-image: 
+            linear-gradient(
+                5deg,
+                rgba(61, 40, 17, 0.3) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(73, 47, 20, 0.3) 75%,
+                rgba(43, 28, 12, 0.3)
+            ),
+            linear-gradient(
+                -5deg,
+                rgba(66, 42, 16, 0.4) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(78, 49, 18, 0.4) 75%,
+                rgba(33, 21, 8, 0.4)
+            ),
+            linear-gradient(
+                90deg,
+                rgba(54, 36, 18, 0.2) 50%,
+                rgba(43, 28, 12, 0.2) 50%
+            );
+        background-size: 10px 40px, 8px 35px, 100% 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Add subtle wood shine */
+    .turntable::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;   
+        bottom: 0;
+        background: linear-gradient(
+            -90deg,
+            rgba(255, 255, 255, 0.033) 0%,
+            rgba(0,0,0,0.05) 50%,
+            rgba(255,255,255,0.02) 100%
+        );
+        pointer-events: none;
+    }
+        .vinyl-container {
+            background: linear-gradient(45deg, #2c2d36 20%, #939398 90%);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 0 auto;
+            width: 70%;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.5),
+                0 4px 8px rgba(0,0,0,0.3); /* Added 3D effect */
+        }
+
+        .spinning-vinyl {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 0%;
+        }
+
+        .tonearm {
+            position: absolute;
+            right: 40%;
+            top: 20%;
+            width: 240px;
+            height: 10px;
+            background: linear-gradient(to right, #3a3a3a, #4a4a4a);
+            border-radius: 4px;
+            transform: rotate(-90deg);
+            transform-origin: right center;
+            transition: transform 2s ease-in-out;
+            box-shadow: inset 2px -2px 8px rgb(255, 255, 255);
+            z-index: 2;
+        }
+
+        .tonearm.active {
+            /* transform: rotate(-57deg); */
+            transform: rotate(-67deg);
+        }
+        .tonearm.ending {
+            transform: rotate(-45deg);
+        }
+
+        .tonearm::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background: #4a4a4a;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.756);
+        }
+
+        .tonearm::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 28px;
+            height: 22px;
+            background: #353537;
+            transform: translate(-50%, -50%) rotate(0deg);
+            border-radius: 3px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.756);
+        }
+
+        .controls {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            width: 25%;
+            align-items: center;
+            background: linear-gradient(45deg, #3f3f44 10%, #939398 90%);
+            border-radius: 10px;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.5),
+                0 4px 8px rgba(45, 45, 45, 0.3);
+        }
+
+        .spinning-vinyl {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: filter 0.3s;
+        }
+        .spinning-vinyl::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 15px;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+        }
+
+        .spinning-vinyl:active {
+            filter: brightness(1.2);
+        }
+
+        .speed-control {
+            position: relative;
+            height: 150px;
+            margin: 2rem 0;
+        }
+
+        .speed-fader {
+            z-index: 2;
+            -webkit-appearance: none;
+            width: 150px;
+            height: 30px;
+            transform: rotate(-90deg);
+            background: transparent;
+            align-items: center;
+            margin-top: 80px;
+            /* right: -80px; */
+        }
+
+
+        .speed-fader::-webkit-slider-runnable-track {
+            position: relative;
+            width: 100%;
+            height: 4px;
+            background: #272727;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 2px rgba(184, 184, 184, 0.532);
+        }
+        .speed-fader::-webkit-slider-runnable-track::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -3px;
+            width: 2px;
+            height: 10px;
+            background: #666;
+            transform: translateX(-50%);
+        }
+
+        .speed-fader::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #a8a8a8;
+            border-radius: 50%;
+            margin-top: -8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.756);
+        }
+
+        .speed-fader:focus {
+            outline: none;
+        }
+
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* background: #4a4a4a; */
+            background: linear-gradient(45deg, #232323 20%, #393939 90%);
+            border: 2px solid #242424;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                -3px 0 4px rgba(0, 0, 0, 0.55),
+                inset -1px 0 2px rgba(102, 102, 102, 0.572);
+        }
+
+        .play-button.playing {
+            background: #323232;
+            background: linear-gradient(45deg, #343434 20%, #1d1d1d 90%);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            /* border-color: #3e3e3ea3; */
+            border: 2px solid #242424;
+        }
+
+        .play-button::before {
+            content: none;
+        }
+        .play-button:hover {
+            background: linear-gradient(45deg, #313131 20%, #424242 90%);
+            /* transform: translateX(50%) scale(1.05); */
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spinning-vinyl.playing {
+            animation: spin 1.82s linear infinite;
+        }
+
+
+
+        .vinyl-stack {
+        position: relative;
+        width: 200px;
+        height: 250px;
+        margin: 2rem auto;
+        perspective: 1000px;
+    }
+
+    .vinyl-item {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: #1a1a1a;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 6px 6px 12px rgba(0,0,0,0.3);
+        z-index: 1;
+        transform-style: preserve-3d;
+    }
+
+    /* Initial scattered positions */
+    .vinyl-item:nth-child(1) { left: 0; top: 0; }
+    .vinyl-item:nth-child(2) { left: 20px; top: 30px; }
+    .vinyl-item:nth-child(3) { left: -10px; top: 60px; }
+    .vinyl-item:nth-child(4) { left: 25px; top: 90px; }
+    .vinyl-item:nth-child(5) { left: -15px; top: 120px; }
+    .vinyl-item:nth-child(6) { left: 35px; top: 50px; }
+
+    .vinyl-item:hover {
+        transform: scale(1.05) translateY(-10px) rotate(0deg) !important;
+        z-index: 10 !important;
+        box-shadow: 8px 12px 20px rgba(0,0,0,0.4);
+    }
+
+    .vinyl-item.active {
+        transform: scale(1.15) translateY(-30px) rotate(0deg) !important;
+        z-index: 3 !important;
+        box-shadow: 12px 18px 30px rgba(0,0,0,0.5);
+        filter: brightness(1.1);
+    }
+
+    .vinyl-cover {
+        width: 100%;
+        height: 100%;
+        border-radius: 2px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .vinyl-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        background: #0d0d0da4;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+
+
+    .tocata-brand {
+        position: absolute;
+        /* top: -35px; */
+        left: 66.5%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        transform: translateX(50%);
+        background-color: #696868;
+        padding: 2px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1em;
+        font-weight: bold;
+        color: #161614;
+
+        box-shadow: 
+            0 0 0 2px #2c2c2c,  /* Darker border */
+            inset 0 -15px 20px rgba(0,0,0,0.5); /* Depth shadow */
+        z-index: 3;
+        white-space: nowrap;
+        pointer-events: auto;
+        letter-spacing: 3px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .tocata-brand:hover {
+        color: #2a1e10;
+        text-shadow: 0 0 8px rgba(255,255,255,0.3);
+        transform: translateX(50%) scale(1.05);
+    }
+
+
+
+        footer { 
+            font-size: 14px;
+            text-align: center; 
+            color: #161614;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .footer2 {
+            font-size: 14px;
+            text-align: center; 
+            color: #161614;
+            display: none;
+            font-family: 'Orbitron', sans-serif;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover {
+            font-weight: bolder;
+        color: #2a1e10;
+        text-shadow: 0 0 8px rgba(255,255,255,0.3);
+        transform: translateX(50%) scale(1.05);
+        }
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                padding: 20px;
+                min-height: 100vh;
+                justify-content: flex-start;
+            }
+
+            .izquierda {
+                margin-right: 0;
+                margin-bottom: 40px;
+                width: 100%;
+                order: -1;
+            }
+
+            .title {
+                font-size: 1.8em;
+                padding: 0.5rem;
+                border-width: 3px;
+            }
+            
+            .title::before {
+                top: 3px;
+                left: 3px;
+                right: 3px;
+                bottom: 3px;
+            }
+            .turntable {
+                transform: rotate(90deg);
+                transform-origin: center;
+                width: 65vh;
+                height: 80vw;
+                max-width: unset;
+                margin: 60px 0;
+                margin-top: 100px;
+                padding: 1rem;
+                /* flex-direction: column-reverse; */
+            }
+
+            .tonearm {
+                right: auto;
+                left: 26%;
+                top: 16%;
+                transform: rotate(-90deg);
+            }
+
+            .vinyl-container {
+                width: 60%;
+                margin:  auto 2rem;
+            }
+
+            .spinning-vinyl {
+                width: 250px;
+                height: 250px;
+            }
+
+            .controls {
+                margin: 5px;
+                flex-direction: column-reverse;
+                gap: 1rem;
+                width: 100%;
+                margin-top: auto;
+                height: 100%;
+            }
+
+            .speed-control {
+                height: 100px;
+                margin: 1rem 0;
+            }
+
+            .speed-fader {
+                /* transform: rotate(0deg); */
+                width: 100%;
+                position: static;
+                margin: 0 auto;
+            }
+
+            .play-button {
+                width: 45px;
+                height: 45px;
+                margin: 10px;
+                transform: rotate(-90deg);
+            }
+
+            .play-button::before {
+                border-top: 12px solid transparent;
+                border-bottom: 12px solid transparent;
+                border-left: 16px solid #fff;
+            }
+
+            .play-button.stop::before {
+                width: 16px;
+                height: 16px;
+            }
+        .tocata-brand {
+            /* Keep existing mobile styles */
+            font-size: 2em;
+            top: -60px;
+            left: 52%;
+            transform: translateX(-50%) rotate(0deg);
+        }
+        .tocata-brand:hover {
+            transform: translateX(-50%) rotate(0deg) scale(1.05);
+        }
+        .vinyl-stack {
+            width: 150px;
+            height: 200px;
+        }
+
+        .vinyl-item {
+            width: 120px;
+            height: 120px;
+        }
+
+        .vinyl-item.active {
+            transform: scale(1.1) translateY(-20px) !important;
+        }
+            footer {
+                display:none;
+
+            }
+            .footer2 {
+                transform: rotate(-90deg);
+                display:block;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="izquierda">
+        <a href='https://www.edpanfleto.com/lee/?dir=kdgdkd/tokata/jm/&filename=tocata_jm.md' target="_blank"><h1 class="title">Tocata <br>Joaquín M.</h1></a>
+        <div class="vinyl-stack">
+            <!-- Add random rotations and offsets using inline styles -->
+            <div class="vinyl-item" style="--i:5; transform: rotate(-4deg) translate(-45px, -25px);" data-track="apache.mp3">
+                <img src="apache.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:5; transform: rotate(8deg) translate(-75px, 95px);" data-track="blackisblack.mp3">
+                <img src="blackisblack.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:4; transform: rotate(-2deg) translate(2px, 80px);" data-track="daytripper.mp3">
+                <img src="daytripper.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:3; transform: rotate(8deg) translate(25px, 15px);" data-track="jetaime.mp3">
+                <img src="jetaime.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:5; transform: rotate(8deg) translate(100%, 25px);" data-track="mansmansworld.mp3">
+                <img src="mansmansworld.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:1; transform: rotate(-5deg) translate(70px, 15px);" data-track="yesterday.mp3">
+                <img src="yesterday.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:2; transform: rotate(-7deg) translate(-78px, 40px);" data-track="jingo.mp3">
+                <img src="jingo.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+            <div class="vinyl-item" style="--i:6; transform: rotate(-4deg) translate(75px, -25px);" data-track="satisfaction.mp3">
+                <img src="satisfaction.jpg" class="vinyl-cover">
+                <div class="vinyl-label"></div>
+            </div>
+        </div>
+    </div>
+    <div class="turntable">
+        <div class="tonearm"></div>
+        <div class="vinyl-container">
+            <img src="vinilo.png" 
+                 class="spinning-vinyl" 
+                 id="vinyl"
+                 alt="Vinilo">
+        </div>
+        
+        <div class="controls">
+            <a href="https://www.edpanfleto.com/lee/?dir=kdgdkd/tokata/jm/&filename=tocata_jm.md" 
+               class="tocata-brand" 
+               target="_blank">·TOCATA·</a>
+            <div class="speed-control">
+                <input type="range" 
+                       class="speed-fader" 
+                       id="speedFader"
+                       min="0"
+                       max="100"
+                       value="50"
+                       step="1">
+            </div>
+            <button class="play-button" id="playButton"></button>
+            <footer>
+                <a href="https://www.edpanfleto.com/kdgdkd/" target="_self">&copy; 2025 kdg/dkd</a>
+            </footer>
+        </div>
+        <div class="footer2">
+            <a href="https://www.edpanfleto.com/kdgdkd/" target="_self">&copy; 2025 kdg/dkd</a>
+        </div>
+    </div>
+
+    <audio id="vinylSound">
+        <source src="vinilo1.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="vinylNoise">
+        <source src="vinyl-noise.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="vinylEnd">
+        <source src="vinyl-end.mp3" type="audio/wav">
+    </audio>
+
+    <script>
+        const vinyl = document.getElementById('vinyl');
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('vinylSound');
+        const speedFader = document.getElementById('speedFader');
+    const vinylItems = document.querySelectorAll('.vinyl-item');
+    let currentTrack = null;
+        const tonearm = document.querySelector('.tonearm');
+        const vinylEnd = document.getElementById('vinylEnd');
+        let isEndingLoop = false;
+        const vinylNoise = document.getElementById('vinylNoise');
+        let noiseTimeout = null;
+        let isFreshStart = true;
+        let isInteracting = false;
+        let isPlaying = false;
+        let isEnding = false;
+        let startTime = 0;
+        let savedRotation = 0;
+        let savedPlaybackTime = 0;
+        let speedRampInterval;
+        let lastFrameTime = 0;
+        let playbackRate = 1;
+        let targetPlaybackRate = 1;
+        let armAnimation = null;
+        const armDuration = 180000; // 3 minutes in milliseconds
+        let armStartTime = null;
+        let armProgress = 0;
+
+        // Configuración inicial
+        audio.loop = false;
+        let currentRotation = 0;
+        updatePlaybackSpeed(50); 
+
+        const firstVinylItem = document.querySelector('.vinyl-item');
+        firstVinylItem.classList.add('active');
+        currentTrack = firstVinylItem;
+        audio.src = firstVinylItem.dataset.track;
+
+
+        vinylEnd.loop = true;
+
+        function togglePlayback() {
+            if(!currentTrack) return;
+            
+            if(!isPlaying && !isEnding) {
+                // Start playing
+                isFreshStart = audio.currentTime === 0;
+                
+                if(isFreshStart) {
+                    // Initial play sequence
+                    tonearm.style.transform = 'rotate(-67deg)';
+                    vinylNoise.currentTime = 0;
+                    vinylNoise.play();
+                    
+                    vinyl.classList.add('playing');
+                    playButton.classList.add('playing');
+                    isPlaying = true;
+
+                    noiseTimeout = setTimeout(() => {
+                        vinylNoise.pause();
+                        audio.play();
+                        startTonearmAnimation();
+                    }, 5000);
+                } else {
+                    // Resume playback
+                    audio.play();
+                    startTonearmAnimation();
+                    vinyl.classList.add('playing');
+                    playButton.classList.add('playing');
+                    isPlaying = true;
+                }
+            } else {
+                // Reset speed when stopping
+                speedFader.value = 50;
+                playbackRate = 1;
+                targetPlaybackRate = 1;
+                audio.playbackRate = 1;
+                // Stop playback
+                resetTurntable(false);
+                tonearm.style.transform = 'rotate(-90deg)';
+                tonearm.classList.remove('active', 'ending');
+                cancelAnimationFrame(armAnimation);
+            }
+        }
+
+        // Función para resetear el reproductor
+
+        function resetTurntable(fullReset = true) {
+            // Cancel any ongoing animations immediately
+            cancelAnimationFrame(armAnimation);
+            clearTimeout(noiseTimeout);
+            
+
+            // Reset audio elements
+            audio.pause();
+            vinylNoise.pause();
+            vinylEnd.pause();
+            audio.currentTime = 0;
+            vinylNoise.currentTime = 0;
+            vinylEnd.currentTime = 0;
+            
+            // Reset visual states
+            vinyl.classList.remove('playing');
+            playButton.classList.remove('playing');
+            vinyl.style.transform = 'rotate(0deg)';
+            
+            // Force tonearm reset
+            tonearm.style.transform = 'rotate(-90deg)';
+            tonearm.classList.remove('active', 'ending');
+
+            // Reset speed controls
+            speedFader.value = 50;
+            playbackRate = 1;
+            targetPlaybackRate = 1;
+            audio.playbackRate = 1;
+
+            // Reset track selection
+            if(fullReset && currentTrack) {
+                currentTrack.classList.remove('active');
+                currentTrack.style.zIndex = 1;
+                currentTrack = null;
+            }
+
+            // Reset state flags
+            isPlaying = false;
+            isEnding = false;
+            isFreshStart = true;
+        }
+
+
+        function startTonearmAnimation() {
+            cancelAnimationFrame(armAnimation);     
+            const startRotation = -67;
+            const targetRotation = -45;
+            const duration = 420000; // 7 minutes
+            let startTime = Date.now();
+
+            function animate() {
+                if(!isPlaying) return; // Stop if not playing
+                
+                const progress = (Date.now() - startTime) / duration;
+                const rotation = startRotation + (targetRotation - startRotation) * progress;
+                
+                tonearm.style.transform = `rotate(${Math.min(rotation, targetRotation)}deg)`;
+                
+                if(progress < 1) {
+                    armAnimation = requestAnimationFrame(animate);
+                }
+            }
+            
+            armAnimation = requestAnimationFrame(animate);
+        }
+        // Controlador de cambio de track
+
+
+        vinylItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if(currentTrack === item) return;
+                
+                // Force immediate tonearm reset
+                tonearm.style.transition = 'none';
+                tonearm.style.transform = 'rotate(-90deg)';
+                
+                // Full reset with audio cleanup
+                resetTurntable();
+                audio.pause();
+                audio.src = item.dataset.track;
+                audio.load();
+                
+                // Force layout recalc before restoring transition
+                void tonearm.offsetHeight; // Trigger reflow
+                tonearm.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+
+                // Reset speed controls
+                speedFader.value = 50;
+                playbackRate = 1;
+                targetPlaybackRate = 1;
+                audio.playbackRate = 1;
+
+                // Update UI
+                vinylItems.forEach(v => v.classList.remove('active'));
+                item.classList.add('active');
+                item.style.zIndex = 10;
+                currentTrack = item;
+            });
+        });
+
+    // Add hover effect management
+            vinylItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if(item.classList.contains('active')) return;
+                
+                // Reset previous track
+                resetTurntable();
+                
+                // Update UI
+                vinylItems.forEach(vinyl => vinyl.classList.remove('active'));
+                item.classList.add('active');
+                item.style.zIndex = 10;
+                
+                // Load new track
+                const track = item.dataset.track;
+                audio.src = track;
+                audio.load();
+                
+                // Reset tonearm position
+                tonearm.style.transform = 'rotate(-90deg)';
+            });
+        });
+
+        // Control de velocidad
+        function updatePlaybackSpeed(value) {
+            targetPlaybackRate = 0.6 + (value / 100) * 0.8;
+            if (!isInteracting) {
+                audio.playbackRate = targetPlaybackRate;
+                playbackRate = targetPlaybackRate;
+            }
+        }
+
+        speedFader.addEventListener('input', (e) => {
+            updatePlaybackSpeed(e.target.value);
+        });
+
+        // Control del botón
+
+
+        playButton.addEventListener('click', () => {
+            if(!currentTrack) return;
+            togglePlayback();
+        });
+
+        // Resetear posición al detener
+        audio.addEventListener('pause', () => {
+            if (audio.currentTime > 0 && !isPlaying) {
+                vinyl.style.transform = 'rotate(0deg)';
+            }
+        });
+        // Función de animación principal
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            
+            if (!isInteracting && !audio.paused) {
+                currentRotation += (delta * 360 * playbackRate) / 1820;
+                vinyl.style.transform = `rotate(${currentRotation % 360}deg)`;
+            }
+            
+            lastFrameTime = timestamp;
+            requestAnimationFrame(animate);
+        }
+
+        function animateTonearm(timestamp) {
+            if (!armStartTime) armStartTime = timestamp;
+            const elapsed = timestamp - armStartTime;
+            const progress = Math.min(elapsed / armDuration, 1);
+            
+            // Calculate current rotation (-57deg to -45deg over 7 minutes)
+            const rotation = -57 + (progress * 12); // 12 degrees total movement
+            tonearm.style.transform = `rotate(${rotation}deg)`;
+            
+            if (progress < 1 && isPlaying) {
+                armAnimation = requestAnimationFrame(animateTonearm);
+            }
+        }
+        // Controladores de eventos
+        vinyl.addEventListener('mousedown', () => {
+            isInteracting = true;
+            audio.pause();
+            savedRotation = currentRotation % 360;
+            savedPlaybackTime = audio.currentTime;
+            clearInterval(speedRampInterval);
+            playbackRate = 0;
+            vinyl.style.transform = `rotate(${currentRotation % 360}deg)`;
+            vinyl.classList.remove('playing');
+        });
+
+        vinyl.addEventListener('mouseup', () => {
+            isInteracting = false;
+            startTime = performance.now();
+            
+            // Efecto de aceleración progresiva
+            let playbackRate = 0;
+            const targetRate = targetPlaybackRate;
+            const startPlaybackTime = Date.now();
+            
+            speedRampInterval = setInterval(() => {
+                const progress = (Date.now() - startPlaybackTime) / 3000; // Cambiar valor para ajustar velocidad de rampup
+                if (progress >= 1) {
+                    playbackRate = targetPlaybackRate;
+                    clearInterval(speedRampInterval);
+                } else {
+                    playbackRate = targetPlaybackRate * progress;
+                }
+                audio.playbackRate = playbackRate;
+                
+                // Actualizar rotación durante la aceleración
+                currentRotation = currentRotation + (progress * 360 * targetPlaybackRate) / 1.82;
+                vinyl.style.transform = `rotate(${currentRotation % 360}deg)`;
+                
+            }, 16);
+            audio.currentTime = savedPlaybackTime;
+            audio.play();
+            vinyl.classList.add('playing');
+        });
+
+        // Soporte táctil
+        vinyl.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if(!isPlaying) {
+                togglePlayback();
+            } else {
+                // Handle scratching interaction
+                isInteracting = true;
+                audio.pause();
+                savedRotation = currentRotation % 360;
+                savedPlaybackTime = audio.currentTime;
+                playbackRate = 0;
+                vinyl.style.transform = `rotate(${currentRotation % 360}deg)`;
+                vinyl.classList.remove('playing');
+            }
+        });
+
+        vinyl.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            if(isInteracting) {
+                isInteracting = false;
+                audio.currentTime = savedPlaybackTime;
+                audio.play();
+                vinyl.classList.add('playing');
+            }
+        });
+
+        vinyl.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            vinyl.dispatchEvent(new Event('mouseup'));
+        });
+
+    // audio ended handler
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            isEnding = true;
+            
+            // Start end loop
+            vinylEnd.currentTime = 0;
+            vinylEnd.play();
+            
+            // Set final tonearm position
+            tonearm.style.transform = 'rotate(-45deg)';
+            tonearm.classList.add('ending');
+        });
+        // Iniciar animación
+        requestAnimationFrame(animate);
+
+        // Control de primer clic
+        vinyl.addEventListener('click', () => {
+            if (!isPlaying && audio.currentTime === 0) {
+                togglePlayback();
+            }
+        });
+        // Inicializar con primer track
+        audio.src = trackSelector.value;
+        audio.load();
+    </script>
+</body>
+</html>
